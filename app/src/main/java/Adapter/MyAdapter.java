@@ -35,8 +35,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         return new ViewHolder(view);
     }
 
+    // Here we bind our views to the data source and the RecyclerView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.name.setText("Hi there");
 
     }
 
