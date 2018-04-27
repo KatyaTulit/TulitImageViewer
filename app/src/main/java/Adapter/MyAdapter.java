@@ -38,8 +38,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     // Here we bind our views to the data source and the RecyclerView
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.name.setText("Hi there");
-
+        ListItem item = listItems.get(position);
+        holder.name.setText(item.getName());
     }
 
     // Gives us the count of listItems that we have
