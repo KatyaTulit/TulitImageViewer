@@ -5,6 +5,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,14 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         listItems = new ArrayList<>();
 
-        // Generate some data
-        for (int i = 0; i < 20; i++) {
-            ListItem item = new ListItem("Item #" + i);
-            listItems.add(item);
-        }
-
-        adapter = new MyAdapter(this, listItems);
-        recyclerView.setAdapter(adapter);
+        loadRecyclerViewData();
 
     }
 
@@ -50,5 +54,45 @@ public class MainActivity extends AppCompatActivity {
         progressDialog.setMessage("Загружаем данные");
         progressDialog.show();
 
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
+                URL_DATA,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray jsonArray) {
+                        progressDialog.dismiss();
+
+                        try {
+
+                            for (int i = 0; i<jsonArray.length(); i++) {
+                                JSONObject o = jsonArray.getJSONObject(i);
+                                JSONObject user = o.getJSONObject("user");
+                                ListItem item = new ListItem(
+                                        user.getString("name"));
+                                listItems.add(item);
+                            }
+
+                            adapter = new MyAdapter(getApplicationContext(), listItems);
+                            recyclerView.setAdapter(adapter);
+
+                        } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        progressDialog.dismiss();
+                        Toast.makeText(getApplicationContext(), volleyError.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                }
+        );
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
+
 }
