@@ -1,10 +1,12 @@
 package com.tulit.tulitimageviewer;
 
 import android.app.ProgressDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -28,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private String partUrl = "https://api.unsplash.com/photos/random?count=15&client_id=";
     private final String URL_DATA = partUrl + apiKey;
 
-
+    private FloatingActionButton buttonRefresh;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
@@ -38,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        buttonRefresh = findViewById(R.id.refreshButtonID);
+
         recyclerView = findViewById(R.id.recyclerViewID);
         // Every item will have fixed size (so that everything is aligned)
         recyclerView.setHasFixedSize(true);
@@ -45,7 +49,13 @@ public class MainActivity extends AppCompatActivity {
 
         listItems = new ArrayList<>();
 
-        loadRecyclerViewData();
+        // Loading data happens on button click. Previous data is not removed yet.
+        buttonRefresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loadRecyclerViewData();
+            }
+        });
 
     }
 
