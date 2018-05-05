@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         listItems = new ArrayList<>();
+        loadRecyclerViewData();
 
         // Loading data happens on button click.
         buttonRefresh.setOnClickListener(new View.OnClickListener() {
