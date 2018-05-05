@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tulit.tulitimageviewer.R;
@@ -51,11 +52,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     // Holds all the items that we have in the list_item.xml
     public class ViewHolder extends RecyclerView.ViewHolder{
         public TextView name;
+        public ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.nameID);
+            image = itemView.findViewById(R.id.imageID);
         }
     }
 }
