@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         ListItem item = listItems.get(position);
         Picasso.get()
                 .load(item.getImageUrl())
-                .resize(500, 500)
+                .fit()
                 .centerCrop()
                 .into(holder.image);
     }

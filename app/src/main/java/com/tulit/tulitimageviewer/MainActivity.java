@@ -28,7 +28,7 @@ import Model.ListItem;
 
 public class MainActivity extends AppCompatActivity {
     private String apiKey = BuildConfig.ClientID;
-    private String partUrl = "https://api.unsplash.com/photos/random?count=15&client_id=";
+    private String partUrl = "https://api.unsplash.com/photos/random?count=16&client_id=";
     private final String URL_DATA = partUrl + apiKey;
 
     private FloatingActionButton buttonRefresh;
