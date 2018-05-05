@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         listItems = new ArrayList<>();
 
-        // Loading data happens on button click. Previous data is not removed yet.
+        // Loading data happens on button click.
         buttonRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setMessage("Загружаем данные");
         progressDialog.show();
+
+        listItems.clear(); // Remove old items
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 URL_DATA,
