@@ -14,5 +14,7 @@ public class ListItem {
         return name;
     }
 
-    public String getImageUrl() { return imageUrl; }
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }

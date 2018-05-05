@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.tulit.tulitimageviewer.R;
 
 import java.util.List;
@@ -40,7 +41,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ListItem item = listItems.get(position);
-        holder.name.setText(item.getName());
+        Picasso.get()
+                .load(item.getImageUrl())
+                .resize(500, 500)
+                .centerCrop()
+                .into(holder.image);
     }
 
     // Gives us the count of listItems that we have
@@ -51,13 +56,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     // Holds all the items that we have in the list_item.xml
     public class ViewHolder extends RecyclerView.ViewHolder{
-        public TextView name;
         public ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
-
-            name = itemView.findViewById(R.id.nameID);
             image = itemView.findViewById(R.id.imageID);
         }
     }

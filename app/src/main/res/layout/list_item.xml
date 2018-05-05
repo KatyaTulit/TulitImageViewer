@@ -17,16 +17,11 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/nameID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
             <ImageView
                 android:id="@+id/imageID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/app_name"/>
 
         </LinearLayout>
     </android.support.v7.widget.CardView>
