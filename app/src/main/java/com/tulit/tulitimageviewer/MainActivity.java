@@ -28,10 +28,9 @@ import Model.ListItem;
 
 public class MainActivity extends AppCompatActivity {
     private String apiKey = BuildConfig.ClientID;
-    private String partUrl = "https://api.unsplash.com/photos/random?count=16&client_id=";
+    private String partUrl = "https://api.unsplash.com/photos/random?count=10&client_id=";
     private final String URL_DATA = partUrl + apiKey;
 
-    private FloatingActionButton buttonRefresh;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private List<ListItem> listItems;
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonRefresh = findViewById(R.id.refreshButtonID);
+        FloatingActionButton buttonRefresh = findViewById(R.id.refreshButtonID);
 
         recyclerView = findViewById(R.id.recyclerViewID);
         // Every item will have fixed size (so that everything is aligned)
