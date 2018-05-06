@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TulitImageViewer</string>
+    <string name="dNameText">By %1$s</string>
 </resources>

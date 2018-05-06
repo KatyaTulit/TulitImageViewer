@@ -19,7 +19,7 @@ public class DetailsActivity extends AppCompatActivity {
         name = findViewById(R.id.dNameID);
 
         if (extras != null) {
-            name.setText(extras.getString("name"));
+            name.setText(getString(R.string.dNameText, extras.getString("name")));
         }
 
     }
