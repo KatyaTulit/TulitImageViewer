@@ -1,15 +1,16 @@
 package Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.tulit.tulitimageviewer.DetailsActivity;
 import com.tulit.tulitimageviewer.R;
 
 import java.util.List;
@@ -71,6 +72,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             int position = getAdapterPosition(); // Getting the position of the item clicked
             ListItem item = listItems.get(position);
 
+            Intent intent = new Intent(context, DetailsActivity.class);
+            intent.putExtra("name", item.getName());
+            intent.putExtra("url", item.getImageUrl());
+
+            context.startActivity(intent);
         }
     }
 }
