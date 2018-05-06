@@ -25,7 +25,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     public MyAdapter(Context context, List<ListItem> listItems) {
         this.context = context;
         this.listItems = listItems;
-
     }
 
     // Inflates our list_item.xml file
@@ -44,10 +43,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         ListItem item = listItems.get(position);
         Picasso.get()
                 .load(item.getImageUrl())
-                .placeholder(R.drawable.loading)
-                .fit()
+                .placeholder(R.drawable.loading) // Use a placeholder until download is finished
+                .fit() // Resize the image to match imageView constraints
                 .centerCrop()
-                .noFade()
+                .noFade() // When the image is loaded, it is displayed right away
                 .into(holder.image);
     }
 
@@ -59,12 +58,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
 
     // Holds all the items that we have in the list_item.xml
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        public ImageView image;
+        private ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
 
-            itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this); // make the item clickable
 
             image = itemView.findViewById(R.id.imageID);
         }
@@ -74,6 +73,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
             int position = getAdapterPosition(); // Getting the position of the item clicked
             ListItem item = listItems.get(position);
 
+            // Here we create an intent and put some extras: photographer name and the image url
             Intent intent = new Intent(context, DetailsActivity.class);
             intent.putExtra("name", item.getName());
             intent.putExtra("url", item.getImageUrl());

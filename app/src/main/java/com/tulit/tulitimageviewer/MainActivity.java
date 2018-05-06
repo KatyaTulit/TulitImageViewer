@@ -44,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerViewID);
         // Every item will have fixed size (so that everything is aligned)
         recyclerView.setHasFixedSize(true);
+        // We want our items to be displayed in two columns, hence GridLayoutManager
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 
         listItems = new ArrayList<>();
-        loadRecyclerViewData();
+        loadRecyclerViewData(); // Load data when creating the activity
 
-        // Loading data happens on button click.
+        // Also we can change data when the floating action button is clicked
         buttonRefresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
 
         listItems.clear(); // Remove old items
 
+        // Here we make an API request and parse it using Volley library:
+        // we need the name of the photographer and image url
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
                 URL_DATA,
                 new Response.Listener<JSONArray>() {
