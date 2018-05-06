@@ -43,7 +43,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
         ListItem item = listItems.get(position);
         Picasso.get()
                 .load(item.getImageUrl())
-                .placeholder(R.drawable.loading) // Use a placeholder until download is finished
+                .placeholder(R.drawable.placeholder) // Use a placeholder until download is finished
                 .fit() // Resize the image to match imageView constraints
                 .centerCrop()
                 .noFade() // When the image is loaded, it is displayed right away
@@ -60,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         private ImageView image;
 
-        public ViewHolder(View itemView) {
+        private ViewHolder(View itemView) {
             super(itemView);
 
             itemView.setOnClickListener(this); // make the item clickable
