@@ -55,12 +55,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder>{
     }
 
     // Holds all the items that we have in the list_item.xml
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         public ImageView image;
 
         public ViewHolder(View itemView) {
             super(itemView);
+
+            itemView.setOnClickListener(this);
+
             image = itemView.findViewById(R.id.imageID);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition(); // Getting the position of the item clicked
+            ListItem item = listItems.get(position);
+
         }
     }
 }
